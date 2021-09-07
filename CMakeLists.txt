@@ -17,7 +17,7 @@ if(WIN32)
 enable_language(CUDA)
 endif(WIN32)
 
-include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/deepsort/include)
 # include and link dirs of cuda and tensorrt, you need adapt them if yours are different
 # cuda
 include_directories(/usr/local/cuda/include)
@@ -29,9 +29,9 @@ link_directories(/usr/lib/aarch64-linux-gnu/)
 include_directories(
     ${CUDA_INCLUDE_DIRS}
     ${OpenCV_INCLUDE_DIRS}
-    ${PROJECT_SOURCE_DIR}/include
+    ${PROJECT_SOURCE_DIR}/deepsort/include
 )
-aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_DIR)
+aux_source_directory(${PROJECT_SOURCE_DIR}/deepsort/src SRC_DIR)
 
 # ===== deepsort =====
 add_library(deepsort SHARED ${SRC_DIR})
@@ -40,21 +40,22 @@ target_link_libraries(deepsort
     cudart nvinfer nvonnxparser
 )
 
-
-
+# ===== yolo =====
+include_directories(${PROJECT_SOURCE_DIR}/yolo/include)
+aux_source_directory(${PROJECT_SOURCE_DIR}/yolo/src YOLO_SRC_DIR)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Ofast -Wfatal-errors -D_MWAITXINTRIN_H_INCLUDED")
 
-cuda_add_library(yolov5_trt SHARED ${PROJECT_SOURCE_DIR}/yololayer.cu ${PROJECT_SOURCE_DIR}/yolov5_lib.cpp )
+cuda_add_library(yolov5_trt SHARED ${PROJECT_SOURCE_DIR}/yolo/include/yololayer.cu ${PROJECT_SOURCE_DIR}/yolo/src/yolov5_lib.cpp)
 target_link_libraries(yolov5_trt nvinfer cudart deepsort) 
 
 
-
-aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_DIR)
+# ===== main =====
+aux_source_directory(${PROJECT_SOURCE_DIR}/src M_SRC_DIR)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
-add_executable(yolosort ${PROJECT_SOURCE_DIR}/calibrator.cpp ${PROJECT_SOURCE_DIR}/main.cpp ${PROJECT_SOURCE_DIR}/manager.cpp ${PROJECT_SOURCE_DIR}/manager.hpp ${INC} ${SRC})
+add_executable(yolosort ${M_SRC_DIR})
 
-target_link_libraries(yolosort nvinfer cudart yolov5_trt ${OpenCV_LIBS})
+target_link_libraries(yolosort nvinfer cudart yolov5_trt)
 
 if(UNIX)
 add_definitions(-O2 -pthread)

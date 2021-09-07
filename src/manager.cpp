@@ -29,10 +29,7 @@ int Trtyolosort::TrtDetect(cv::Mat &frame,float &conf_thresh,std::vector<DetectB
 	// yolo detect
 	auto ret = yolov5_trt_detect(trt_engine, frame, conf_thresh,det);
 	DS->sort(frame,det);
-	showDetection(frame,det);
+	//showDetection(frame,det);
 	return 1 ;
 	
 }
-
-
-
