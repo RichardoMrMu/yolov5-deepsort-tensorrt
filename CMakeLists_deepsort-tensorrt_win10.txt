@@ -1,0 +1,52 @@
+cmake_minimum_required(VERSION 2.6)
+project(deepsort)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_BUILD_TYPE Release)
+set(CUDA_BIN_PATH C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v11.1)	#1.修改为自己的cuda路径
+set(TRT_DIR "D:\\lbq\\TensorRT-7.2.3.4")  #2.修改为自己的tensorRT路径
+set(TRT_INCLUDE_DIRS ${TRT_DIR}\\include) #3.修改为自己的tensorRT头文件路径
+set(TRT_LIB_DIRS ${TRT_DIR}\\lib) #4.修改为自己的tensorRT库文件路径
+set(Eigen3_PATH D:\\lbq\\eigen) #5.修改为自己的Eigen路径
+option(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+find_package(OpenCV REQUIRED)
+find_package(CUDA REQUIRED)
+
+
+enable_language(CUDA)
+include_directories(
+    ${CUDA_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}
+	${TRT_INCLUDE_DIRS}
+	${Eigen3_PATH}
+    ${PROJECT_SOURCE_DIR}/include
+)
+
+# tensorRT
+link_directories(${TRT_LIB_DIRS})
+link_directories(${OpenCV_LIB_DIRS})
+
+aux_source_directory(${PROJECT_SOURCE_DIR}/src SRC_DIR)
+
+# ===== deepsort =====
+add_library(deepsort STATIC ${SRC_DIR})
+target_link_libraries(deepsort 
+    ${CUDA_LIBRARIES} ${OpenCV_LIBS} 
+    cudart nvinfer nvonnxparser
+)
+
+# ===== onnx2engine =====
+add_executable(onnx2engine ${PROJECT_SOURCE_DIR}/onnx2engine.cpp)
+target_link_libraries(onnx2engine
+    ${CUDA_LIBRARIES}
+    cudart nvinfer nvonnxparser deepsort
+)
+
+# ===== demo =====
+add_executable(demo ${PROJECT_SOURCE_DIR}/demo.cpp)
+target_link_libraries(demo 
+    ${CUDA_LIBRARIES} ${OpenCV_LIBS} 
+    cudart nvinfer nvonnxparser deepsort
+)
+
+

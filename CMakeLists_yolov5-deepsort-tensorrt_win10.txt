@@ -1,0 +1,77 @@
+cmake_minimum_required(VERSION 2.6)
+
+project(yolosort)
+list(APPEND CUDA_NVCC_FLAGS "-std=c++11")
+set(CMAKE_CXX_FLAGS "-std=c++0x")
+find_package(OpenCV REQUIRED)
+add_definitions(-std=c++11)
+add_definitions(-DAPI_EXPORTS)
+option(CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_BUILD_TYPE Release)
+
+#1.设置CUDA路径(set the path of cuda root )
+set(CUDA_BIN_PATH C:\\Program Files\\NVIDIA GPU Computing Toolkit\\CUDA\\v11.1)
+#2.设置tensorrt路径(set the path of tensorrt root)
+set(TRT_DIR "D:\\lbq\\TensorRT-7.2.3.4")
+#3.设置tensorrt头文件路径(set the path of tensorrt .h format file)
+set(TRT_INCLUDE_DIRS ${TRT_DIR}\\include)
+#4.设置tensorrt库文件路径(set the path of tensorrt .lib format file)
+set(TRT_LIB_DIRS ${TRT_DIR}\\lib)
+#5.设置Eigen路径,我用的是Eigen-3.3.9.zip(set the path of Eigen)
+set(Eigen3_PATH D:\\lbq\\eigen)
+#6.设置dirent路径(set the path of Dirent, download it from https://codeload.github.com/tronkko/dirent/zip/refs/heads/master)
+set(Dirent_INCLUDE_DIRS "D:\\lbq\\dirent\\include") #11
+# ==编译完成后,在vs2019打开的时候需要在链接器->命令行->其他选项->%(AdditionalOptions) /machine:x64 /FORCE:MULTIPLE
+
+find_package(CUDA REQUIRED)
+set(CUDA_NVCC_PLAGS ${CUDA_NVCC_PLAGS};-std=c++11;-g;-G;-gencode;arch=compute_53;code=sm_53)
+
+if(WIN32)
+enable_language(CUDA)
+endif(WIN32)
+
+include_directories(${PROJECT_SOURCE_DIR}/deepsort/include)
+# include and link dirs of cuda and tensorrt, you need adapt them if yours are different
+
+# tensorrt
+link_directories(${TRT_LIB_DIRS})
+link_directories(${OpenCV_LIB_DIRS})
+
+include_directories(
+    ${CUDA_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}
+	${TRT_INCLUDE_DIRS}
+	${Eigen3_PATH}
+	${Dirent_INCLUDE_DIRS}
+    ${PROJECT_SOURCE_DIR}/deepsort/include
+)
+aux_source_directory(${PROJECT_SOURCE_DIR}/deepsort/src SRC_DIR)
+
+# ===== deepsort =====
+add_library(deepsort STATIC ${SRC_DIR})
+target_link_libraries(deepsort 
+    ${CUDA_LIBS} ${OpenCV_LIBS} 
+    cudart nvinfer nvonnxparser
+)
+
+# ===== yolo =====
+include_directories(${PROJECT_SOURCE_DIR}/yolo/include)
+aux_source_directory(${PROJECT_SOURCE_DIR}/yolo/src YOLO_SRC_DIR)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Ofast -D_MWAITXINTRIN_H_INCLUDED")
+cuda_add_library(yolov5_trt STATIC ${PROJECT_SOURCE_DIR}/yolo/include/yololayer.cu ${PROJECT_SOURCE_DIR}/yolo/src/yolov5_lib.cpp)
+target_link_libraries(yolov5_trt nvinfer cudart deepsort) 
+
+
+# ===== main =====
+aux_source_directory(${PROJECT_SOURCE_DIR}/src M_SRC_DIR)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+add_executable(yolosort ${M_SRC_DIR})
+
+target_link_libraries(yolosort nvinfer cudart yolov5_trt)
+
+if(UNIX)
+add_definitions(-O2 -pthread)
+endif(UNIX)
+set(CMAKE_CXX_FLAGS "-std=c++0x")
