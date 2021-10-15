@@ -2,7 +2,11 @@
 This repository uses yolov5 and deepsort to follow humna heads which can run in Jetson Xavier nx and Jetson nano. 
 In Jetson Xavier Nx, it can achieve 10 FPS when images contain heads about 70+(you can try python version, when you use python version, you can find it very slow in Jetson Xavier nx , and Deepsort can cost nearly 1s).
 <img src="assets/yolosort.gif" >
+
 Thanks for [B.Q Long](https://github.com/lbq779660843), offer the windows cmakelists.txt, if you want run this rep, you can use [CMakeLists_deepsort-tensorrt_win10.txt](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/blob/main/CMakeLists_deepsort-tensorrt_win10.txt) and [CMakeLists_yolov5-deepsort-tensorrt_win10.txt](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/blob/main/CMakeLists_yolov5-deepsort-tensorrt_win10.txt). 
+
+You can see video play in [BILIBILI](https://www.bilibili.com/video/BV1nR4y1H7sR/), or [YOUTUBE](https://www.youtube.com/watch?v=29vEi-7mEic).
+
 ## Requirement
 1. Jetson nano or Jetson Xavier nx
 2. Jetpack 4.5.1
