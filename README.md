@@ -5,7 +5,7 @@ In Jetson Xavier Nx, it can achieve 10 FPS when images contain heads about 70+(y
 <img src="assets/yolosort.gif" >
 
 Thanks for [B.Q Long](https://github.com/lbq779660843), offer the windows cmakelists.txt. If you want run this rep in windows, you can use [CMakeLists_deepsort-tensorrt_win10.txt](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/blob/main/CMakeLists_deepsort-tensorrt_win10.txt) and [CMakeLists_yolov5-deepsort-tensorrt_win10.txt](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/blob/main/CMakeLists_yolov5-deepsort-tensorrt_win10.txt). 
-[]
+
 You can see video play in [BILIBILI](https://www.bilibili.com/video/BV1nR4y1H7sR/), or [YOUTUBE](https://www.youtube.com/watch?v=29vEi-7mEic) and [YOUTUBE](https://youtu.be/mVq3pWNjb3E).
 
 ## Requirement
