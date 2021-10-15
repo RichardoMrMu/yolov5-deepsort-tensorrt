@@ -26,7 +26,8 @@ if you have problem in this project, you can see this [artical](https://blog.csd
 
 ## Comming soon
 - [ ] Int8 .
-
+- [ ] IOU Tracking.
+- [ ] Faster and use less memory.
 ## Speed
 
 Whole process time from read image to finished deepsort (include every img preprocess and postprocess)
