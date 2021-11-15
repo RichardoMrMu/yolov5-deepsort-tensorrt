@@ -202,3 +202,24 @@ sudo ./yolov5 -d yolov5.engine ../samples
 ```
 
 In this way, you can get your own tensorrt yolov5 model. Enjoy it!
+
+# Other Project
+- [yolov5-deepsort-tensorrt](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt)
+- [facial-emotion-recognition](https://github.com/RichardoMrMu/facial-emotion-recognition)
+- [yolov5-fire-smoke-detect-python](https://github.com/RichardoMrMu/yolov5-fire-smoke-detect-python)
+- [yolov5-helmet-detection](https://github.com/RichardoMrMu/yolov5-helmet-detection)
+- [yolov5-fire-smoke-detect](https://github.com/RichardoMrMu/yolov5-fire-smoke-detect)
+- [gazecapture-web gaze estimation](https://github.com/RichardoMrMu/gazecapture-web)
+- [yolov5-helmet-detection-python](https://github.com/RichardoMrMu/yolov5-helmet-detection-python)
+- [yolov5-reflective-clothes-detect-python](https://github.com/RichardoMrMu/yolov5-reflective-clothes-detect-python)
+- [yolov5-reflective-clothes-detect](https://github.com/RichardoMrMu/yolov5-reflective-clothes-detect)
+- [yolov5-smoking-detect](https://github.com/RichardoMrMu/yolov5-smoking-detect)
+- [yolov5-mask-detect](https://github.com/RichardoMrMu/yolov5-mask-detect)
+- [yolov5-mask-detection-python](https://github.com/RichardoMrMu/yolov5-mask-detection-python)
+- [yolov5-smoke-detection-python](https://github.com/RichardoMrMu/yolov5-smoke-detection-python)
+- [deepsort-tensorrt](https://github.com/RichardoMrMu/deepsort-tensorrt)
+
+
+
+
+
