@@ -126,7 +126,7 @@ mkdir build
 cd build
 cmake ..
 make 
-.onnx2engine ../resources/deepsort.onnx ../resources/deepsort.engine
+./onnx2engine ../resources/deepsort.onnx ../resources/deepsort.engine
 // test
 ./demo ../resource/deepsort.engine ../resources/track.txt
 ```
