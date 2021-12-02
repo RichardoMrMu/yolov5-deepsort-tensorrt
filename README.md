@@ -63,7 +63,7 @@ You can also see [tensorrtx official readme](https://github.com/wang-xinyu/tenso
 The following is deepsort.onnx and deesort.engine files, you can find in baiduyun and [https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort)
 | Model| Url |
 | :-------------- | --------------- |
-| 百度云 | [BaiduYun url](https://pan.baidu.com/s/1vpQFsD346lP64O1nhOilkw ) passwd:z68e| 
+| 百度云 | [BaiduYun url](https://pan.baidu.com/s/1vpQFsD346lP64O1nhOilkw ) passwd:`z68e`| 
 
 1. Get yolov5 repository
 
