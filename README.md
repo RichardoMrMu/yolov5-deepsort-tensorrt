@@ -60,6 +60,10 @@ You need two model, one is yolov5 model, for detection, generating from [tensorr
 For yolov5 detection model, I choose yolov5s, and choose `yolov5s.pt->yolov5s.wts->yolov5s.engine`
 Note that, used models can get from [yolov5](https://github.com/ultralytics/yolov5) and [deepsort](https://github.com/ZQPei/deep_sort_pytorch), and if you need to use your own model, you can follow the `Run Your Custom Model`.
 You can also see [tensorrtx official readme](https://github.com/wang-xinyu/tensorrtx/tree/master/yolov5)
+The following is deepsort.onnx and deesort.engine files, you can find in baiduyun and [https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt/releases/tag/yolosort)
+| Model| Url |
+| :-------------- | --------------- |
+| 百度云 | [BaiduYun url](https://pan.baidu.com/s/1vpQFsD346lP64O1nhOilkw ) passwd:z68e| 
 
 1. Get yolov5 repository
 
