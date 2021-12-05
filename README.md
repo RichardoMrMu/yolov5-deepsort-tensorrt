@@ -45,9 +45,9 @@ and attention!!! the number of deepsort tracking is 70+, not single or 10-20 per
 ## Build and Run
 
 ```shell
-
 git clone https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt.git
 cd yolov5-deepsort-tensorrt
+// before you cmake and make, please change ./src/main.cpp char* yolo_engine = ""; char* sort_engine = ""; to your own path
 mkdir build 
 cmake ..
 make 
