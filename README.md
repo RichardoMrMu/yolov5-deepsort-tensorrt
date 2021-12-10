@@ -54,6 +54,9 @@ make
 ```
 if you meet some errors in cmake and make, please see this [artical](https://blog.csdn.net/weixin_42264234/article/details/120152117) or see Attention.
 
+## DataSet
+If you need to train your own model with head detection, you can use this [SCUT-HEAD](https://github.com/HCIILAB/SCUT-HEAD-Dataset-Release), this dataset has bbox with head and can download freely.
+
 ## Model
 You need two model, one is yolov5 model, for detection, generating from [tensorrtx](https://github.com/wang-xinyu/tensorrtx). And the other is deepsort model, for tracking. You should generate the model the same way.
 ### Generate yolov5 model
