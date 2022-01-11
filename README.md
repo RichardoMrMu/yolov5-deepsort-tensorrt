@@ -85,14 +85,13 @@ wget https://github.com/ultralytics/yolov5/releases/download/v5.0/yolov5s.pt
 
 2. Get tensorrtx.
 
-```shell
-git clone https://github.com/wang-xinyu/tensorrtx
-```
+For yolov5 v5.0, download .pt from [yolov5 release v5.0](https://github.com/ultralytics/yolov5/releases/tag/v5.0), `git clone -b v5.0 https://github.com/ultralytics/yolov5.git` and `git clone -b yolov5-v5.0 https://github.com/wang-xinyu/tensorrtx.git`, then follow how-to-run in [tensorrtx/yolov5-v5.0](https://github.com/wang-xinyu/tensorrtx/tree/yolov5-v5.0/yolov5).
+
 
 3. Get xxx.wst model
 
 ```shell
-cp tensorrtx/gen_wts.py yolov5/
+cp {tensorrtx}/yolov5/gen_wts.py {ultralytics}/yolov5/
 cd yolov5 
 python3 gen_wts.py -w ./weights/yolov5s.pt -o ./weights/yolov5s.wts
 // a file 'yolov5s.wts' will be generated.
