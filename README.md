@@ -2,7 +2,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
 [![GitHub stars](https://img.shields.io/github/stars/RichardoMrMu/yolov5-deepsort-tensorrt.svg?style=flat-square&logo=github&label=Stars&logoColor=white)](https://github.com/RichardoMrMu/yolov5-deepsort-tensorrt)
 
-This repository uses yolov5 and deepsort to follow humna heads which can run in Jetson Xavier nx and Jetson nano. 
+This repository uses yolov5 and deepsort to follow human heads which can run in Jetson Xavier nx and Jetson nano. 
 In Jetson Xavier Nx, it can achieve 10 FPS when images contain heads about 70+(you can try python version, when you use python version, you can find it very slow in Jetson Xavier nx , and Deepsort can cost nearly 1s).
 
 <img src="assets/yolosort.gif" >
